@@ -1,0 +1,14 @@
+<nb-card [size]="breakpoint.width >= breakpoints.xxxl || breakpoint.width < breakpoints.md ? 'medium' : 'medium'">
+  <nb-card-header>Blocks</nb-card-header>
+  <nb-card-body style="padding: 0 1.25rem;">
+    <div class="block" *ngFor="let c of blocks">
+      <div class="user-container">
+        <div class="info-container">
+          <div class="block-number"><a href="/#/blocks/info/{{ c.blockNum }}">{{ c.blockNum }}</a></div>
+          <div class="block-producer"><a href="/#/accounts/info/{{ c.producer }}">{{ c.producer }}</a></div>
+        </div>
+      </div>
+      <span class="time">{{ c.timestamp }}</span>
+   </div>
+  </nb-card-body>
+</nb-card>

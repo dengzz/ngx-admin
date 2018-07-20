@@ -27,121 +27,61 @@ export class TrafficChartComponent implements AfterViewInit, OnDestroy {
     this.themeSubscription = this.theme.getJsTheme().pipe(delay(1)).subscribe(config => {
 
       const trafficTheme: any = config.variables.traffic;
+      const colors = config.variables;
+      const echarts: any = config.variables.echarts;
 
-      this.option = Object.assign({}, {
-        grid: {
-          left: 0,
-          top: 0,
-          right: 0,
-          bottom: 0,
-        },
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: points,
-        },
-        yAxis: {
-          boundaryGap: [0, '5%'],
-          axisLine: {
-            show: false,
-          },
-          axisLabel: {
-            show: false,
-          },
-          axisTick: {
-            show: false,
-          },
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: trafficTheme.colorBlack,
-              opacity: 0.06,
-              width: '1',
-            },
-          },
-        },
-        tooltip: {
-          axisPointer: {
-            type: 'shadow',
-          },
-          textStyle: {
-            color: trafficTheme.tooltipTextColor,
-            fontWeight: trafficTheme.tooltipFontWeight,
-            fontSize: 16,
-          },
-          position: 'top',
-          backgroundColor: trafficTheme.tooltipBg,
-          borderColor: trafficTheme.tooltipBorderColor,
-          borderWidth: 3,
-          formatter: '{c0} MB',
-          extraCssText: trafficTheme.tooltipExtraCss,
-        },
-        series: [
-          {
-            type: 'line',
-            symbol: 'circle',
-            symbolSize: 8,
-            sampling: 'average',
-            silent: true,
-            itemStyle: {
-              normal: {
-                color: trafficTheme.shadowLineDarkBg,
-              },
-              emphasis: {
-                color: 'rgba(0,0,0,0)',
-                borderColor: 'rgba(0,0,0,0)',
-                borderWidth: 0,
-              },
-            },
-            lineStyle: {
-              normal: {
-                width: 2,
-                color: trafficTheme.shadowLineDarkBg,
-              },
-            },
-            data: points.map(p => p - 15),
-          },
-          {
-            type: 'line',
-            symbol: 'circle',
-            symbolSize: 6,
-            sampling: 'average',
-            itemStyle: {
-              normal: {
-                color: trafficTheme.itemColor,
-                borderColor: trafficTheme.itemBorderColor,
-                borderWidth: 2,
-              },
-              emphasis: {
-                color: 'white',
-                borderColor: trafficTheme.itemEmphasisBorderColor,
-                borderWidth: 2,
-              },
-            },
-            lineStyle: {
-              normal: {
-                width: 2,
-                color: trafficTheme.lineBg,
-                shadowColor: trafficTheme.lineBg,
-                shadowBlur: trafficTheme.lineShadowBlur,
-              },
-            },
-            areaStyle: {
-              normal: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                  offset: 0,
-                  color: trafficTheme.gradFrom,
-                }, {
-                  offset: 1,
-                  color: trafficTheme.gradTo,
-                }]),
-                opacity: 1,
-              },
-            },
-            data: points,
-          },
-        ],
-      });
+      this.option = {
+         backgroundColor: echarts.bg,
+         color: [colors.warningLight, colors.infoLight, colors.dangerLight, colors.successLight, colors.primaryLight],
+         tooltip: {
+           trigger: 'item',
+           formatter: '{a} <br/>{b} : {c} ({d}%)',
+         },
+         legend: {
+           orient: 'vertical',
+           left: 'left',
+           data: ['USA', 'Germany', 'France', 'Canada', 'Russia'],
+           textStyle: {
+             color: echarts.textColor,
+           },
+         },
+         series: [
+           {
+             name: 'Countries',
+             type: 'pie',
+             radius: '80%',
+             center: ['50%', '50%'],
+             data: [
+               { value: 335, name: 'Germany' },
+               { value: 310, name: 'France' },
+               { value: 234, name: 'Canada' },
+               { value: 135, name: 'Russia' },
+               { value: 1548, name: 'USA' },
+             ],
+             itemStyle: {
+               emphasis: {
+                 shadowBlur: 10,
+                 shadowOffsetX: 0,
+                 shadowColor: echarts.itemHoverShadowColor,
+               },
+             },
+             label: {
+               normal: {
+                 textStyle: {
+                   color: echarts.textColor,
+                 },
+               },
+             },
+             labelLine: {
+               normal: {
+                 lineStyle: {
+                   color: echarts.axisLineColor,
+                 },
+               },
+             },
+           },
+         ],
+       };
     });
   }
 

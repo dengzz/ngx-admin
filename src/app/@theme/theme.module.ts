@@ -35,7 +35,7 @@ import {
 import { CapitalizePipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
 import {
   OneColumnLayoutComponent,
-  SampleLayoutComponent,
+  ChainLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 } from './layouts';
@@ -73,7 +73,7 @@ const COMPONENTS = [
   ThemeSettingsComponent,
   TinyMCEComponent,
   OneColumnLayoutComponent,
-  SampleLayoutComponent,
+  ChainLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 ];
@@ -92,7 +92,7 @@ const PIPES = [
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot(
     {
-      name: 'cosmic',
+      name: 'default',
     },
     [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME ],
   ).providers,

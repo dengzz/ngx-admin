@@ -1,0 +1,100 @@
+<nb-card>
+  <nb-card-header>
+    Account Infomation
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Name:</label>
+          <div class="form-control-plaintext">
+            <span class="text-warning">{{account.account_name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Balance:</label>
+          <div class="form-control-plaintext">
+            <span class="text-warning">{{account.currency_balance}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Created:</label>
+          <div class="form-control-plaintext">
+            {{account.created | date : 'yyyy-MM-dd HH:mm:ss Z'}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Creator:</label>
+          <div class="form-control-plaintext">
+               <a href="/#/accounts/info/{{creator?.creator}}">{{creator?.creator}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Owner Keys:</label>
+          <div class="form-control-plaintext">
+            {{account.owner_keys}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Active Keys:</label>
+          <div class="form-control-plaintext">
+            {{account.active_keys}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Staked:</label>
+          <div class="form-control-plaintext">
+            <span class="text-warning">{{account.voter_info?.staked_formated}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">CPU:</label>
+          <div class="form-control-plaintext">
+            <span class="font-italic">{{(account.cpu_limit?.used_formated)}} / {{(account.cpu_limit?.max_formated)}} ({{account.total_resources?.cpu_weight}})</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Network:</label>
+          <div class="form-control-plaintext">
+            <span class="font-italic">{{(account.net_limit?.used_formated)}} / {{(account.net_limit?.max_formated)}} ({{account.total_resources?.net_weight}})</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Memory:</label>
+          <div class="form-control-plaintext">
+            <span class="font-italic">{{(account.ram_usage_formated)}} / {{(account.total_resources?.ram_bytes_formated)}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Actions:</label>
+          <ng2-smart-table [settings]="assettings" [source]="assource"></ng2-smart-table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

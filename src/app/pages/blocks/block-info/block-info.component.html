@@ -1,0 +1,80 @@
+<nb-card>
+  <nb-card-header>
+    Block Infomation #{{block.block_num}}
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Id:</label>
+          <div class="form-control-plaintext">
+            {{ block.formated_id }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Timestamp:</label>
+          <div class="form-control-plaintext">
+            {{block.timestamp | date : 'yyyy-MM-dd HH:mm:ss Z'}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Producer:</label>
+          <div class="form-control-plaintext">
+            <a href="/#/accounts/info/{{block.producer}}">{{block.producer}}</a>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Previous:</label>
+          <div class="form-control-plaintext">
+            {{block.formated_previous}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Transaction Mroot:</label>
+          <div class="form-control-plaintext">
+            {{block.formated_transaction_mroot}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Quantity:</label>
+          <div class="form-control-plaintext">
+            <span class="text-warning">{{block.transferQuantity}}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Fee:</label>
+          <div class="form-control-plaintext">
+            <span class="text-warning">{{block.transferFee}}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Action Mroot:</label>
+          <div class="form-control-plaintext">
+            {{block.formated_action_mroot}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Ref Block Prefix:</label>
+          <div class="form-control-plaintext">
+            {{block.ref_block_prefix}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Producer Signature:</label>
+          <div class="form-control-plaintext">
+            {{block.formated_producer_signature}}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Transactions:</label>
+          <ng2-smart-table [settings]="txsettings" [source]="txsource"></ng2-smart-table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

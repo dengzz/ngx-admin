@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card class="inline-form-card">
+      <nb-card-body>
+        <form class="form-inline">
+          <input type="text" class="form-control" placeholder="block number" name="blockNumber" [(ngModel)]="queryParams.blockNumber">
+          <input type="text" class="form-control" placeholder="account name" name="authorizer" [(ngModel)]="queryParams.authorizer">
+          <select class="form-control" name="status" [(ngModel)]="queryParams.status">
+            <option value="">All Status</option>
+            <option value="executed">Executed</option>
+            <option value="soft_fail">SoftFail</option>
+            <option value="hard_fail">HardFail</option>
+            <option value="delayed">Delayed</option>
+            <option value="expired">Expired</option>
+          </select>
+          <button type="submit" class="btn btn-primary" (click)="onSearch()" (keyup.enter)="onSearch()">Search</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<nb-card>
+  <nb-card-header>
+    <span class="text-warning">{{source.count()}}</span> Transactions
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

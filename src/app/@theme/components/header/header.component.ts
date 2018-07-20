@@ -1,49 +1,64 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { NbMenuService, NbSidebarService } from '@nebular/theme';
+import { NbMenuService, NbSidebarService, NbSearchService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-header',
-  styleUrls: ['./header.component.scss'],
-  templateUrl: './header.component.html',
+   selector: 'ngx-header',
+   styleUrls: ['./header.component.scss'],
+   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
 
 
-  @Input() position = 'normal';
+   @Input() position = 'normal';
 
-  user: any;
+   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+   keyword: string;
 
-  constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private userService: UserService,
-              private analyticsService: AnalyticsService) {
-  }
+   userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
 
-  ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.nick);
-  }
+   constructor(private sidebarService: NbSidebarService,
+      private menuService: NbMenuService,
+      private userService: UserService,
+      private analyticsService: AnalyticsService,
+      private nbSearchService: NbSearchService,
+      private router: Router) {
+   }
 
-  toggleSidebar(): boolean {
-    this.sidebarService.toggle(true, 'menu-sidebar');
-    return false;
-  }
+   ngOnInit() {
+      this.userService.getUsers()
+         .subscribe((users: any) => this.user = users.nick);
+      this.nbSearchService.onSearchSubmit().subscribe((val: any) => {
+         this.router.navigate(['/search/' + val.term]);
+      });
+   }
 
-  toggleSettings(): boolean {
-    this.sidebarService.toggle(false, 'settings-sidebar');
-    return false;
-  }
+   toggleSidebar(): boolean {
+      this.sidebarService.toggle(true, 'menu-sidebar');
+      return false;
+   }
 
-  goToHome() {
-    this.menuService.navigateHome();
-  }
+   toggleSettings(): boolean {
+      this.sidebarService.toggle(false, 'settings-sidebar');
+      return false;
+   }
 
-  startSearch() {
-    this.analyticsService.trackEvent('startSearch');
-  }
+   goToHome() {
+      this.menuService.navigateHome();
+   }
+
+   startSearch() {
+      this.analyticsService.trackEvent('startSearch');
+   }
+
+   onSearch() {
+      console.log(this.keyword);
+      if(this.keyword) {
+         this.router.navigate(['/search/' + this.keyword]);
+      }
+   }
 }

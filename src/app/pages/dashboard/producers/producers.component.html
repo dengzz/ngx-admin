@@ -1,0 +1,31 @@
+<nb-card size="xlarge">
+  <div class="consumption-table">
+    <div class="table-header">
+      <div>BP</div>
+    </div>
+    <nb-card-body style="padding: 0; overflow: auto;">
+      <div class="stats-month" *ngFor="let pro of value">
+        <div>
+          <span class="month"><a href="/#/accounts/info/{{ pro.owner }}">{{ pro.owner }}</a></span>
+        </div>
+        <div class="results">
+          <b>{{ pro.totalVotes }}</b> %
+        </div>
+      </div>
+    </nb-card-body>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-header">
+      <div class="header-stats">
+        <div class="stats-block">
+          <div>
+            <span class="value">{{value.length}} </span>
+            <span class="unit">producers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ngx-producers-chart [chartValue]="value"></ngx-producers-chart>
+  </div>
+</nb-card>

@@ -1,0 +1,26 @@
+<nb-card>
+  <nb-card-header>
+    Contract Infomation
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Name:</label>
+          <div class="form-control-plaintext">
+            <span class="text-warning">{{contract.name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Abi:</label>
+          <div class="form-control-plaintext">
+            <pre>{{contract.abi}}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

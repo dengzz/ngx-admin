@@ -1,0 +1,3 @@
+[submodule "ng2-smart-table"]
+	path = ng2-smart-table
+	url = https://github.com/dengzz/ng2-smart-table.git

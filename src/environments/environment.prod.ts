@@ -5,4 +5,5 @@
  */
 export const environment = {
   production: true,
+  signalrUrl: 'http://eosaction.io/api/ChainHub',
 };

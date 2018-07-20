@@ -1,0 +1,67 @@
+<nb-card>
+  <nb-card-header>
+    Tran Infomation
+    <span class="badge badge-success">{{tran.status}}</span>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Id:</label>
+          <div class="form-control-plaintext">
+            {{tran.id}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Block Time:</label>
+          <div class="form-control-plaintext">
+            {{tran.blockTime | date : 'yyyy-MM-dd HH:mm:ss Z'}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Block Num:</label>
+          <div class="form-control-plaintext">
+            <a href="/#/blocks/info/{{tran.blockNum}}">{{tran.blockNum}}</a>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">CPU:</label>
+          <div class="form-control-plaintext">
+            {{tran.cpuUsageUs}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Expiration Time:</label>
+          <div class="form-control-plaintext">
+            {{tran.expiration | date : 'yyyy-MM-dd HH:mm:ss Z'}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Last Irreversible Block:</label>
+          <div class="form-control-plaintext">
+            <a href="/#/blocks/info/{{tran.lastIrreversibleBlock}}">{{tran.lastIrreversibleBlock}}</a>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Network:</label>
+          <div class="form-control-plaintext">
+            {{tran.netUsageWords}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="form-control-label">Actions:</label>
+          <ng2-smart-table [settings]="assettings" [source]="assource"></ng2-smart-table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -181,6 +181,10 @@
     nb-user /deep/ .user-name {
       display: none;
     }
+
+    .static-search{
+       display: none;
+    }
   }
 
   @include media-breakpoint-down(is) {
