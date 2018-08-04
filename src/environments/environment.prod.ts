@@ -5,5 +5,5 @@
  */
 export const environment = {
   production: true,
-  signalrUrl: 'http://eosaction.io/api/ChainHub',
+  signalrUrl: 'http://192.168.1.218/api/ChainHub',
 };

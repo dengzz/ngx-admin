@@ -30,13 +30,15 @@ export class BlockListComponent {
             valuePrepareFunction: (value) => {
                return `${(value.substr(0, 5) + '...' + value.substr(value.length - 5))}`;
             },
+            cssClass: 'col-md-1',
          },
          blockNum: {
             title: 'Num',
             type: 'html',
             valuePrepareFunction: (value) => {
                return `<a href="/#/blocks/info/${value}">${value}</a>`;
-            }
+            },
+            cssClass: 'col-md-1',
          },
          timestamp: {
             title: 'Timestamp',
@@ -44,17 +46,20 @@ export class BlockListComponent {
             valuePrepareFunction: (date) => {
                return new Date(date).toLocaleString();
             },
+            cssClass: 'col-md-1',
          },
          producer: {
             title: 'Producer',
             type: 'html',
             valuePrepareFunction: (value) => {
                return `<a href="/#/accounts/info/${value}">${value}</a>`;
-            }
+            },
+            cssClass: 'col-md-1',
          },
          transactionCount: {
             title: 'Transactions',
-            type: 'number'
+            type: 'number',
+            cssClass: 'col-md-1',
          },
       },
       pager: {
